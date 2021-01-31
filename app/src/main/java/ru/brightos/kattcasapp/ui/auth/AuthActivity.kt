@@ -1,11 +1,8 @@
 package ru.brightos.kattcasapp.ui.auth
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.transition.platform.MaterialFadeThrough
 import kotlinx.android.synthetic.main.activity_auth.*
 import ru.brightos.kattcasapp.App
 import ru.brightos.kattcasapp.R
@@ -38,7 +35,7 @@ class AuthActivity : AppCompatActivity() {
             goNext()
     }
 
-    fun goNext() {
+    private fun goNext() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

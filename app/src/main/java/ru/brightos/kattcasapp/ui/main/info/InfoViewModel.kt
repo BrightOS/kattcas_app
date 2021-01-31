@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.android.synthetic.main.fragment_information.*
 import kotlinx.android.synthetic.main.layout_bottom_change_name.*
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import ru.brightos.kattcasapp.App
 import ru.brightos.kattcasapp.`object`.Directories
 import ru.brightos.kattcasapp.`object`.Screens
 import ru.brightos.kattcasapp.data.PreferenceRepository
@@ -48,7 +46,7 @@ class InfoViewModel : ViewModel() {
                             val dirs = ArrayList<Directories>()
                             val screens = getScreens()
 
-                            getDirectories().let {
+                            getDirectories().let { it ->
                                 if (it.size > 0)
                                     it.forEach {
                                         (it in screens.names).let { active ->
@@ -142,7 +140,7 @@ class InfoViewModel : ViewModel() {
             list.removeLast()
             list.forEach {
                 var pos = 0
-                var s = it.substring(0, it.length - 1)
+                val s = it.substring(0, it.length - 1)
                 s.forEachIndexed { i, c ->
                     if (c == '/')
                         pos = i
@@ -164,101 +162,107 @@ class InfoViewModel : ViewModel() {
 
                 if (d.size > 1) {
                     println(d)
-                    if (d[2].contains("week")) {
-                        _uptime.postValue(
-                            (Integer.parseInt(d[1]) * 7 + Integer.parseInt(d[3])).let {
-                                if (it > 10 && it < 20) {
-                                    return@let "$it дней"
-                                }
-                                when (it % 10) {
-                                    1 -> {
-                                        return@let "$it день"
-                                    }
-                                    2, 3, 4 -> {
-                                        return@let "$it дня"
-                                    }
-                                    else -> {
+                    when {
+                        d[2].contains("week") -> {
+                            _uptime.postValue(
+                                (Integer.parseInt(d[1]) * 7 + Integer.parseInt(d[3])).let {
+                                    if (it in 11..19) {
                                         return@let "$it дней"
                                     }
-                                }
-                            }
-                        )
-                    } else if (d[2].contains("day")) {
-                        _uptime.postValue(
-                            Integer.parseInt(d[1]).let {
-                                if (it in 11..19) {
-                                    return@let "$it дней"
-                                }
-                                when (it % 10) {
-                                    1 -> {
-                                        return@let "$it день"
+                                    when (it % 10) {
+                                        1 -> {
+                                            return@let "$it день"
+                                        }
+                                        2, 3, 4 -> {
+                                            return@let "$it дня"
+                                        }
+                                        else -> {
+                                            return@let "$it дней"
+                                        }
                                     }
-                                    2, 3, 4 -> {
-                                        return@let "$it дня"
-                                    }
-                                    else -> {
+                                }
+                            )
+                        }
+                        d[2].contains("day") -> {
+                            _uptime.postValue(
+                                Integer.parseInt(d[1]).let {
+                                    if (it in 11..19) {
                                         return@let "$it дней"
                                     }
-                                }
-                            }
-                        )
-                    } else if (d[2].contains("hour")) {
-                        _uptime.postValue(
-                            Integer.parseInt(d[1]).let {
-                                if (it in 11..19) {
-                                    return@let "$it часов"
-                                }
-                                when (it % 10) {
-                                    1 -> {
-                                        return@let "$it час"
+                                    when (it % 10) {
+                                        1 -> {
+                                            return@let "$it день"
+                                        }
+                                        2, 3, 4 -> {
+                                            return@let "$it дня"
+                                        }
+                                        else -> {
+                                            return@let "$it дней"
+                                        }
                                     }
-                                    2, 3, 4 -> {
-                                        return@let "$it часа"
-                                    }
-                                    else -> {
+                                }
+                            )
+                        }
+                        d[2].contains("hour") -> {
+                            _uptime.postValue(
+                                Integer.parseInt(d[1]).let {
+                                    if (it in 11..19) {
                                         return@let "$it часов"
                                     }
-                                }
-                            }
-                        )
-                    } else if (d[2].contains("min")) {
-                        _uptime.postValue(
-                            Integer.parseInt(d[1]).let {
-                                if (it in 11..19) {
-                                    return@let "$it минут"
-                                }
-                                when (it % 10) {
-                                    1 -> {
-                                        return@let "$it минута"
+                                    when (it % 10) {
+                                        1 -> {
+                                            return@let "$it час"
+                                        }
+                                        2, 3, 4 -> {
+                                            return@let "$it часа"
+                                        }
+                                        else -> {
+                                            return@let "$it часов"
+                                        }
                                     }
-                                    2, 3, 4 -> {
-                                        return@let "$it минуты"
-                                    }
-                                    else -> {
+                                }
+                            )
+                        }
+                        d[2].contains("min") -> {
+                            _uptime.postValue(
+                                Integer.parseInt(d[1]).let {
+                                    if (it in 11..19) {
                                         return@let "$it минут"
                                     }
-                                }
-                            }
-                        )
-                    } else if (d[2].contains("sec")) {
-                        _uptime.postValue(
-                            Integer.parseInt(d[1]).let {
-                                if (it in 11..19) {
-                                    return@let "$it секунд"
-                                }
-                                when (it % 10) {
-                                    1 -> {
-                                        return@let "$it секунда"
+                                    when (it % 10) {
+                                        1 -> {
+                                            return@let "$it минута"
+                                        }
+                                        2, 3, 4 -> {
+                                            return@let "$it минуты"
+                                        }
+                                        else -> {
+                                            return@let "$it минут"
+                                        }
                                     }
-                                    2, 3, 4 -> {
-                                        return@let "$it секунды"
-                                    }
-                                    else -> {
+                                }
+                            )
+                        }
+                        d[2].contains("sec") -> {
+                            _uptime.postValue(
+                                Integer.parseInt(d[1]).let {
+                                    if (it in 11..19) {
                                         return@let "$it секунд"
                                     }
+                                    when (it % 10) {
+                                        1 -> {
+                                            return@let "$it секунда"
+                                        }
+                                        2, 3, 4 -> {
+                                            return@let "$it секунды"
+                                        }
+                                        else -> {
+                                            return@let "$it секунд"
+                                        }
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }

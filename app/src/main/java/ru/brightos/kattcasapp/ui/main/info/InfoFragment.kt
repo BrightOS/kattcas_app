@@ -1,21 +1,18 @@
 package ru.brightos.kattcasapp.ui.main.info
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.transition.TransitionManager
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_information.*
-import kotlinx.android.synthetic.main.layout_card.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.brightos.kattcasapp.App
@@ -27,9 +24,10 @@ import ru.brightos.kattcasapp.util.adapter.InfoAdapter
 
 
 class InfoFragment : Fragment(R.layout.fragment_information) {
-    lateinit var model: InfoViewModel
-    lateinit var preferenceRepository: PreferenceRepository
+    private lateinit var model: InfoViewModel
+    private lateinit var preferenceRepository: PreferenceRepository
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -112,7 +110,7 @@ class InfoFragment : Fragment(R.layout.fragment_information) {
                         recycler_warn.visibility = View.GONE
                         info_recycler.visibility = View.VISIBLE
                     } else {
-                        recycler_warn.setText("Данные для авторизации неверны. Для того, чтобы продолжить пользоваться приложением, измените данные для подключения, нажав на плитку \"Данные для подключения\"")
+                        recycler_warn.text = "Данные для авторизации неверны. Для того, чтобы продолжить пользоваться приложением, измените данные для подключения, нажав на плитку \"Данные для подключения\""
                         recycler_warn.setTextColor(
                             ContextCompat.getColor(
                                 requireContext(),

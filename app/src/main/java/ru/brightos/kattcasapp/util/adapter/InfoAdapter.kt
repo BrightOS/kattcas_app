@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialSharedAxis
@@ -25,6 +24,7 @@ import java.io.PipedInputStream
 import java.io.PipedOutputStream
 import java.util.*
 
+@Suppress("BlockingMethodInNonBlockingContext")
 class InfoAdapter(
     private val context: Context,
     private val preferenceRepository: PreferenceRepository,
@@ -206,7 +206,7 @@ class InfoAdapter(
         }
     }
 
-    fun deleteItemByPosition(position: Int) {
+    private fun deleteItemByPosition(position: Int) {
         dirs.removeAt(position)
         notifyDataSetChanged()
     }

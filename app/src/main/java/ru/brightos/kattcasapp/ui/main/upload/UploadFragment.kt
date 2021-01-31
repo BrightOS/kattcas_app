@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.transition.MaterialSharedAxis
-import kotlinx.android.synthetic.main.fragment_information.*
 import kotlinx.android.synthetic.main.fragment_upload.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -19,9 +18,9 @@ import ru.brightos.kattcasapp.data.PreferenceRepository
 import ru.brightos.kattcasapp.util.adapter.PathAdapter
 import java.io.File
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class UploadFragment : Fragment(R.layout.fragment_upload) {
-    lateinit var model: UploadViewModel
-    lateinit var preferenceRepository: PreferenceRepository
+    private lateinit var preferenceRepository: PreferenceRepository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,6 +74,5 @@ class UploadFragment : Fragment(R.layout.fragment_upload) {
         StrictMode.setThreadPolicy(policy)
 
         preferenceRepository = (activity?.application as App).preferenceRepository
-        model = ViewModelProvider(requireActivity()).get(UploadViewModel::class.java)
     }
 }

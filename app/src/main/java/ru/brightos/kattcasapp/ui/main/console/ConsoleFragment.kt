@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_console.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -17,7 +16,7 @@ import ru.brightos.kattcasapp.R
 import ru.brightos.kattcasapp.ui.main.MainActivity
 
 class ConsoleFragment : Fragment(R.layout.fragment_console) {
-    lateinit var model: ConsoleViewModel
+    private lateinit var model: ConsoleViewModel
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

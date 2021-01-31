@@ -42,9 +42,8 @@ class ConsoleViewModel : ViewModel() {
             session.disconnect()
     }
 
-    fun connect() {
+    private fun connect() {
         try {
-            println("Подготовка конфигурации для подключения к серверу...")
             val config = Properties()
             config["StrictHostKeyChecking"] = "no"
             val jsch = JSch()
@@ -52,14 +51,8 @@ class ConsoleViewModel : ViewModel() {
             session.setPassword(preferenceRepository.password)
             session.setConfig(config)
 
-            println("Подготовка конфигурации окончена.")
-            println("Идёт подключение...")
-            println("Начинается ожидание первичного ответа от сервера...")
-
             session.connect()
-            println("Соединение с сервером установлено.")
 
-            println("Идёт открытие канала...")
             channel = session.openChannel("shell")
             channel as ChannelShell
 
@@ -67,7 +60,6 @@ class ConsoleViewModel : ViewModel() {
             outputStream = PipedOutputStream(inputStream)
             channel.inputStream = inputStream
             channel.connect()
-            println("Соединение с каналом установлено.")
 
             Thread {
                 runBlocking {
@@ -95,11 +87,6 @@ class ConsoleViewModel : ViewModel() {
 
     fun execute(s: String) {
         outputStream.write("$s\n".toByteArray())
-    }
-
-    fun disconnect() {
-        println("Закрытие соединения...")
-        println("Соединение закрыто успешно.")
     }
 
     override fun onCleared() {

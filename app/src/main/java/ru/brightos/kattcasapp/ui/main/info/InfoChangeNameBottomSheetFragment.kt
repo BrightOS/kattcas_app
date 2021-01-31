@@ -79,14 +79,14 @@ class InfoChangeNameBottomSheetFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         nickname.hint = preferenceRepository.localNickname
 
-        nickname.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        nickname.imeOptions = EditorInfo.IME_ACTION_DONE
 
         save_nickname.setOnClickListener {
             model.setLocalNickname(nickname.text.toString())
             this.dismiss()
         }
 
-        nickname.setOnEditorActionListener { v, actionId, event ->
+        nickname.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 model.setLocalNickname(nickname.text.toString())
                 true
