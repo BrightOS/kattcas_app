@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.KattcasApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#171626</item>
+        <item name="colorPrimaryDark">#171626</item>
+        <item name="colorAccent">#F5F6FA</item>
+        <item name="cardBackground">#201d2e</item>
+        <item name="android:textColor">#F5F6FA</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+        <item name="colorBad">@color/red_800</item>
+        <item name="colorMedium">@color/yellow_600</item>
+        <item name="colorGood">@color/green_600</item>
+        <item name="colorUnknown">@color/indigo_900</item>
+
+        <item name="background">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+    </style>
+</resources>

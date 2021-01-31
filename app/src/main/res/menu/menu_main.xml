@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/information"
+        android:icon="@drawable/ic_time_circle"
+        android:title="Информация"/>
+    <item
+        android:id="@+id/console"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat"
+        android:title="Консоль"/>
+    <item
+        android:id="@+id/upload"
+        android:icon="@drawable/ic_arrow_up_circle"
+        android:title="Отправка"/>
+</menu>

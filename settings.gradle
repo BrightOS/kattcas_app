@@ -1,0 +1,4 @@
+include ':commons-net-3.7.2'
+include ':ftp4j-1.7.2'
+include ':app'
+rootProject.name = "Kattca's App"
