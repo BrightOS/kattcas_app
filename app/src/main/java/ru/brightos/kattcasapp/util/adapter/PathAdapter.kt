@@ -55,9 +55,17 @@ class PathAdapter(
         } else if (!File(
                 Environment.getExternalStorageDirectory()
                     .toString() + "/Scripts/" + paths[position] + "/launch.py"
+            ).exists() &&
+            !File(
+                Environment.getExternalStorageDirectory()
+                    .toString() + "/Scripts/" + paths[position] + "/launch.js"
+            ).exists() &&
+            !File(
+                Environment.getExternalStorageDirectory()
+                    .toString() + "/Scripts/" + paths[position] + "/launch.php"
             ).exists()
         ) {
-            holder.itemView.status.text = "Файл launch.py не найден"
+            holder.itemView.status.text = "Исполняемый файл не найден"
             holder.itemView.status.setTextColor(
                 ContextCompat.getColor(
                     context,

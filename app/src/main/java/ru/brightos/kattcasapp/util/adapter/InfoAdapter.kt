@@ -129,7 +129,9 @@ class InfoAdapter(
                     execute(
                         "screen -S ${dirs[position].name}",
                         "cd ~/android_scripts/${dirs[position].name}",
-                        "python3 launch.py"
+                        "python3 launch.py",
+                        "node launch.js",
+                        "php launch.php"
                     )
 
                     val screens = getScreens()

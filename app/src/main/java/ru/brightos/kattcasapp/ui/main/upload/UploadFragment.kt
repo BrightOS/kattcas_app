@@ -3,6 +3,7 @@ package ru.brightos.kattcasapp.ui.main.upload
 import android.os.Bundle
 import android.os.Environment
 import android.os.StrictMode
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -49,6 +50,9 @@ class UploadFragment : Fragment(R.layout.fragment_upload) {
             Environment.getExternalStorageDirectory().toString() + "/Scripts"
         )
 
+        println(folder.absolutePath)
+        Log.e("DI", "${folder.mkdir()}")
+        Log.e("DI", "${folder.mkdirs()}")
         if (!folder.exists())
             folder.createNewFile()
 
