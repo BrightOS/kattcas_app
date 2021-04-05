@@ -91,7 +91,6 @@ class InfoViewModel : ViewModel() {
             e.removeAt(0)
             e.removeAt(e.size - 1)
             e.removeAt(e.size - 1)
-            e.removeAt(e.size - 1)
 
             e.forEach {
                 it.let { s ->

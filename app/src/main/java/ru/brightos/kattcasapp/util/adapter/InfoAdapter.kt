@@ -129,9 +129,7 @@ class InfoAdapter(
                     execute(
                         "screen -S ${dirs[position].name}",
                         "cd ~/android_scripts/${dirs[position].name}",
-                        "python3 launch.py",
-                        "node launch.js",
-                        "php launch.php"
+                        "python3 launch.py"
                     )
 
                     val screens = getScreens()
@@ -305,6 +303,7 @@ class InfoAdapter(
         if (e.size > 1) {
             // Remove unusual elements
             e.removeAt(0)
+            e.removeAt(e.size - 1)
             e.removeAt(e.size - 1)
 
             e.forEach {
